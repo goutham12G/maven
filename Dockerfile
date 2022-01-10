@@ -12,8 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM golang:1.10
+FROM maven:latest
 WORKDIR /go/src/app
 COPY . .
-RUN go install -v
+RUN mvn clean install -y
 CMD ["app"]
