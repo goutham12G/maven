@@ -13,7 +13,7 @@
 # limitations under the License.
 
 FROM maven:latest
-WORKDIR /go/src/app
+WORKDIR /go/src/target/app
 COPY . .
 RUN mvn clean install -y
 CMD ["app"]
