@@ -25,7 +25,7 @@ spec:
  # serviceAccountName: cd-jenkins
   containers:
   - name: goutham
-    image: maven:eclipse-temurin
+    image: maven:3.6.3-jdk-8
     command:
     - cat
     tty: true
@@ -35,7 +35,7 @@ spec:
     - cat
     tty: true
   - name: kubectl
-    image: maven:eclipse-temurin
+    image: maven:3.6.3-jdk-8
     command:
     - cat
     tty: true
@@ -57,7 +57,7 @@ spec:
     stage('Build and push image with Container Builder') {
       steps {
         container('gcloud') {
-          sh "JAVABUFFERED=1 gcloud builds submit -t ${IMAGE_TAG} ."
+         # sh "JAVABUFFERED=1 gcloud builds submit -t ${IMAGE_TAG} ."
         }
       }
     } 
