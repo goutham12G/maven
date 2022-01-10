@@ -24,12 +24,12 @@ spec:
   # Use service account that can deploy to all namespaces
  # serviceAccountName: cd-jenkins
   containers:
-  - name: maven
+  - name: goutham
     image: maven:latest
     command:
     - cat
     tty: true
-  - name: maven
+  - name: goutham
     image: gcr.io/google.com/cloudsdktool/cloud-sdk
     command:
     - cat
@@ -47,9 +47,9 @@ spec:
       steps {
         container('maven') {
           sh """
-            ln -s `pwd` /mvn/src/sample-app
-            cd /mvn/src/sample-app
-            clean install
+            ln -s `pwd` /go/src/target/sample-app
+            cd /go/src/target/sample-app
+            maven clean install
           """
         }
       }
