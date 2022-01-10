@@ -25,7 +25,7 @@ spec:
  # serviceAccountName: cd-jenkins
   containers:
   - name: goutham
-    image: maven:latest
+    image: maven:eclipse-temurin
     command:
     - cat
     tty: true
@@ -35,7 +35,7 @@ spec:
     - cat
     tty: true
   - name: kubectl
-    image: maven:latest
+    image: maven:eclipse-temurin
     command:
     - cat
     tty: true
