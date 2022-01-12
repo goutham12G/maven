@@ -43,12 +43,10 @@ spec:
 }
   }
  # stages {
-    stage('Test') {
+    stage('build') {
       steps {
         container('maven') {
           sh """
-            ln -s `pwd` /go/src/target/sample-app
-            cd /go/src/target/sample-app
             maven clean install
           """
         }
@@ -57,7 +55,7 @@ spec:
     stage('Build and push image with Container Builder') {
       steps {
         container('gcloud') {
-          sh "JAVA=1 gcloud builds submit -t ${IMAGE_TAG} ."
+          sh "PYTHONBUFFERED=1 gcloud builds submit -t ${IMAGE_TAG} ."
         }
       }
     } 
