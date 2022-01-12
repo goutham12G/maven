@@ -42,7 +42,7 @@ spec:
 """
 }
   }
-  stages {
+ # stages {
     stage('Test') {
       steps {
         container('maven') {
