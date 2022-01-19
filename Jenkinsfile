@@ -50,7 +50,7 @@ spec:
         container('maven-bld') {
           sh """
              ls -a && pwd 
-             maven clean install
+             mvn clean install
              cp -r target/* .
           """
         }
