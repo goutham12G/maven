@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM maven:3.6.3-jdk-8
+FROM  maven:amazoncorretto
 WORKDIR /go/src/target/app
 COPY . .
 RUN mvn clean install -y
