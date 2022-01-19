@@ -1,10 +1,10 @@
 pipeline {
 
   environment {
-    PROJECT = "focus-tree-329108"
+    PROJECT = "augmented-ward-329505"
     APP_NAME = "dinesh"
     FE_SVC_NAME = "${APP_NAME}-frontend"
-    CLUSTER = "false"
+    CLUSTER = "goutham"
     CLUSTER_ZONE = "us-central1-c"
     IMAGE_TAG = "gcr.io/${PROJECT}/${APP_NAME}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
     JENKINS_CRED = "${PROJECT}"
