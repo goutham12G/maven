@@ -1,8 +1,10 @@
+
+
 pipeline {
 
   environment {
     PROJECT = "augmented-ward-329505"
-    APP_NAME = "goutham"
+    APP_NAME = "hello"
     FE_SVC_NAME = "${APP_NAME}-frontend"
     CLUSTER = "goutham"
     CLUSTER_ZONE = "us-central1-c"
@@ -24,18 +26,18 @@ spec:
   # Use service account that can deploy to all namespaces
  # serviceAccountName: cd-jenkins
   containers:
-  - name: goutham
-    image: maven:3.6.3-jdk-8
+  - name: maven-bld
+    image: maven:amazoncorretto
     command:
     - cat
     tty: true
-  - name: goutham
+  - name: gcloud
     image: gcr.io/google.com/cloudsdktool/cloud-sdk
     command:
     - cat
     tty: true
   - name: kubectl
-    image: maven:3.6.3-jdk-8
+    image: google/cloud-sdk
     command:
     - cat
     tty: true
@@ -43,11 +45,13 @@ spec:
 }
   }
   stages {
-    stage('build') {
+    stage('codebuild') {
       steps {
-        container('maven') {
+        container('maven-bld') {
           sh """
-            maven clean install
+             ls -a && pwd 
+             mvn clean install
+             cp -r target/* .
           """
         }
       }
@@ -55,13 +59,15 @@ spec:
     stage('Build and push image with Container Builder') {
       steps {
         container('gcloud') {
-          sh "PYTHONBUFFERED=1 gcloud builds submit -t ${IMAGE_TAG} ."
+          sh "PYTHONUNBUFFERED=1 gcloud builds submit -t ${IMAGE_TAG} ."
         }
       }
     } 
     stage('Deploy Dev') {
       steps {
         container('kubectl') {
+          sh "gcloud container clusters get-credentials goutham --zone us-central1-c --project augmented-ward-329505"
+          sh "kubectl --help"
          
         }
       }
