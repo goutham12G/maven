@@ -67,7 +67,7 @@ spec:
       steps {
         container('kubectl') {
           sh "gcloud container clusters get-credentials goutham --zone us-central1-c --project augmented-ward-329505"
-          sh "kubectl --help"
+          sh "kubectl apply -f deployment.yaml"
          
         }
       }
