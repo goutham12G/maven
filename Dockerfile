@@ -15,5 +15,4 @@
 FROM  maven:amazoncorretto
 WORKDIR /go/src/target/app
 COPY . .
-RUN mvn clean install -y
 CMD ["app"]
